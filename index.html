@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Post – Shivam Kumar</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+:root {
+  --ink: #0a0c10;
+  --paper: #f5f3ee;
+  --warm: #f0ebe0;
+  --accent: #e8410a;
+  --blue: #1a3cff;
+  --green: #00a878;
+  --purple: #7c3aed;
+  --gold: #d4a017;
+  --muted: #8a8070;
+  --border: rgba(10,12,16,0.1);
+}
+ 
+body {
+  background: #e8e4dc;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  padding: 32px 16px;
+}
+ 
+/* ── CARD ── */
+.card {
+  width: 680px;
+  background: var(--paper);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow:
+    0 2px 0 rgba(0,0,0,0.08),
+    0 8px 32px rgba(0,0,0,0.14),
+    0 32px 64px rgba(0,0,0,0.08);
+  animation: rise 0.9s cubic-bezier(0.22,1,0.36,1) both;
+}
+ 
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to   { opacity: 1; transform: none; }
+}
+ 
+/* ── HEADER BAND ── */
+.header-band {
+  background: var(--ink);
+  padding: 28px 32px 24px;
+  position: relative;
+  overflow: hidden;
+}
+ 
+.header-band::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,65,10,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+ 
+.header-band::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: 40%;
+  width: 300px; height: 120px;
+  background: radial-gradient(ellipse, rgba(26,60,255,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+ 
+.author-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+ 
+.avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #ff8c42);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  color: white;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
+}
+ 
+.author-info {}
+.author-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.author-role {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.45);
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+}
+ 
+.headline-block {
+  position: relative;
+  z-index: 1;
+}
+ 
+.eyebrow-tag {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(232,65,10,0.12);
+  border: 1px solid rgba(232,65,10,0.25);
+  border-radius: 2px;
+  padding: 3px 8px;
+  margin-bottom: 10px;
+}
+ 
+.main-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 46px;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: #fff;
+  margin-bottom: 12px;
+}
+ 
+.main-headline .accent-t { color: #5b9bff; }
+.main-headline .accent-s { color: #2dd4b4; }
+.main-headline .accent-m3 { color: #c084fc; }
+.main-headline .vs { color: rgba(255,255,255,0.25); font-size: 32px; }
+ 
+.sub-copy {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+  max-width: 460px;
+}
+.sub-copy strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+ 
+/* ── INTRO TEXT ── */
+.intro-block {
+  padding: 24px 32px 0;
+}
+ 
+.hook {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.65;
+  margin-bottom: 14px;
+  border-left: 3px solid var(--accent);
+  padding-left: 14px;
+}
+ 
+.hook em {
+  font-style: normal;
+  color: var(--accent);
+  font-weight: 600;
+}
+ 
+.intro-body {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #3a3530;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+ 
+/* ── SECTION LABEL ── */
+.sec-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+ 
+/* ── ARCHITECTURE STRIP ── */
+.arch-strip {
+  padding: 20px 32px;
+}
+ 
+.arch-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+ 
+.arch-tile {
+  background: var(--warm);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 14px 12px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s ease;
+  animation: tileIn 0.6s ease both;
+}
+.arch-tile:nth-child(1) { animation-delay: 0.1s; }
+.arch-tile:nth-child(2) { animation-delay: 0.2s; }
+.arch-tile:nth-child(3) { animation-delay: 0.3s; }
+.arch-tile:nth-child(4) { animation-delay: 0.4s; }
+ 
+@keyframes tileIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+ 
+.arch-tile:hover { transform: translateY(-2px); }
+ 
+.arch-tile::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 4px 4px 0 0;
+}
+.tile-t::before { background: #5b9bff; }
+.tile-s::before { background: #2dd4b4; }
+.tile-m::before { background: var(--accent); }
+.tile-m3::before { background: #c084fc; }
+ 
+.tile-year {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+}
+.tile-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.tile-t .tile-name { color: #1a3cff; }
+.tile-s .tile-name { color: #00a878; }
+.tile-m .tile-name { color: var(--accent); }
+.tile-m3 .tile-name { color: #7c3aed; }
+ 
+.tile-complexity {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.tile-t .tile-complexity { color: #e84040; }
+.tile-s .tile-complexity { color: #d4a017; }
+.tile-m .tile-complexity { color: #00a878; }
+.tile-m3 .tile-complexity { color: #7c3aed; }
+ 
+.tile-desc {
+  font-size: 10px;
+  color: #6b6055;
+  line-height: 1.5;
+}
+ 
+/* ── KEY INSIGHTS ── */
+.insights-block {
+  padding: 0 32px 20px;
+}
+ 
+.insight-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+ 
+.insight-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  background: var(--warm);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  animation: slideIn 0.5s ease both;
+}
+.insight-item:nth-child(1) { animation-delay: 0.2s; }
+.insight-item:nth-child(2) { animation-delay: 0.3s; }
+.insight-item:nth-child(3) { animation-delay: 0.4s; }
+.insight-item:nth-child(4) { animation-delay: 0.5s; }
+ 
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: none; }
+}
+ 
+.insight-icon {
+  font-size: 14px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.insight-text {
+  font-size: 12.5px;
+  color: #2a2520;
+  line-height: 1.55;
+}
+.insight-text strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+.insight-text .hl-t { color: #1a3cff; font-weight: 600; }
+.insight-text .hl-s { color: #00a878; font-weight: 600; }
+.insight-text .hl-m { color: var(--accent); font-weight: 600; }
+.insight-text .hl-m3 { color: #7c3aed; font-weight: 600; }
+ 
+/* ── MAMBA-3 SPOTLIGHT ── */
+.m3-spotlight {
+  margin: 0 32px 20px;
+  background: var(--ink);
+  border-radius: 4px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+ 
+.m3-spotlight::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(192,132,252,0.2) 0%, transparent 70%);
+}
+ 
+.m3-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c084fc;
+  margin-bottom: 10px;
+  position: relative;
+}
+ 
+.m3-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+  position: relative;
+}
+ 
+.m3-pills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  position: relative;
+}
+ 
+.m3-pill {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(192,132,252,0.2);
+  border-radius: 4px;
+  padding: 10px;
+}
+ 
+.pill-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: rgba(192,132,252,0.5);
+  margin-bottom: 4px;
+  letter-spacing: 0.1em;
+}
+.pill-title {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #c084fc;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.pill-body {
+  font-size: 9.5px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.5;
+}
+ 
+/* ── STAT ROW ── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin: 0 0 20px;
+}
+ 
+.stat-item {
+  padding: 16px 12px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  animation: popIn 0.4s ease both;
+}
+.stat-item:last-child { border-right: none; }
+.stat-item:nth-child(1) { animation-delay: 0.15s; }
+.stat-item:nth-child(2) { animation-delay: 0.25s; }
+.stat-item:nth-child(3) { animation-delay: 0.35s; }
+.stat-item:nth-child(4) { animation-delay: 0.45s; }
+ 
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+ 
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: 4px;
+  display: block;
+}
+.stat-desc {
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.4;
+  font-weight: 400;
+}
+ 
+/* ── COMPARISON MINI TABLE ── */
+.compare-block {
+  padding: 0 32px 20px;
+}
+ 
+.mini-table { width: 100%; border-collapse: collapse; }
+ 
+.mini-table thead tr {
+  border-bottom: 2px solid var(--ink);
+}
+.mini-table th {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 6px;
+  text-align: center;
+}
+.th-label { text-align: left; color: var(--muted); }
+.th-t { color: #1a3cff; }
+.th-m { color: var(--accent); }
+.th-m3 { color: #7c3aed; }
+ 
+.mini-table tbody tr {
+  border-bottom: 1px solid var(--border);
+}
+.mini-table tbody tr:hover { background: rgba(0,0,0,0.02); }
+.mini-table td {
+  padding: 8px 6px;
+  font-size: 11px;
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+}
+.mini-table td:first-child {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: 'DM Sans', sans-serif;
+}
+.good { color: #00a878; }
+.ok   { color: #d4a017; }
+.bad  { color: #e84040; }
+ 
+/* ── VERDICT BLOCK ── */
+.verdict-block {
+  margin: 0 32px 24px;
+  padding: 16px 18px;
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
+  position: relative;
+}
+ 
+.verdict-corner {
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 16px 16px 0 0;
+  border-color: var(--ink) transparent transparent transparent;
+}
+ 
+.verdict-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  margin-bottom: 8px;
+  padding-left: 16px;
+}
+ 
+.verdict-text {
+  font-size: 12.5px;
+  color: #3a3530;
+  line-height: 1.65;
+  font-weight: 400;
+}
+.verdict-text strong { font-weight: 600; color: var(--ink); }
+ 
+/* ── HASHTAGS + FOOTER ── */
+.post-footer {
+  padding: 0 32px 28px;
+}
+ 
+.hashtags {
+  font-size: 13px;
+  color: #1a3cff;
+  font-weight: 500;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+ 
+.divider-line {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 14px;
+}
+ 
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+ 
+.author-sig {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sig-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #ff8c42);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  color: #fff;
+}
+.sig-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.sig-title {
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 400;
+}
+ 
+.post-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 9.5px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+ 
+/* ── CTA STRIP ── */
+.cta-strip {
+  background: var(--accent);
+  padding: 10px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cta-text {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #fff;
+}
+.cta-action {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+</style>
+</head>
+<body>
+ 
+<div class="card">
+ 
+  <!-- HEADER -->
+  <div class="header-band">
+    <div class="author-row">
+      <div class="avatar">SK</div>
+      <div class="author-info">
+        <div class="author-name">Shivam Kumar</div>
+        <div class="author-role">AI Researcher · GenAI / RLHF / LLM Alignment</div>
+      </div>
+    </div>
+    <div class="headline-block">
+      <div class="eyebrow-tag">Architecture Deep Dive · 2025</div>
+      <div class="main-headline">
+        <span class="accent-t">TRANS&shy;FORMERS</span>
+        <span class="vs"> vs </span>
+        <span class="accent-s">SSMs</span>
+        <span class="vs"> vs </span>
+        <span class="accent-m3">MAMBA-3</span>
+      </div>
+      <div class="sub-copy">
+        The sequence modeling arms race — from <strong>quadratic attention</strong> to <strong>inference-first state spaces</strong>. Everything you need to know, in one post.
+      </div>
+    </div>
+  </div>
+ 
+  <!-- INTRO -->
+  <div class="intro-block">
+    <div class="hook" style="margin-top:20px;">
+      Every time you double context length in a Transformer, compute <em>quadruples</em>. That single constraint is rewriting the architecture playbook.
+    </div>
+    <div class="intro-body">
+      After spending weeks deep in RLHF pipelines and LLM alignment work, I decided to map out the full evolutionary arc — from the original Transformer to the freshly published <strong>Mamba-3 (ICLR 2026)</strong>. Here's what actually matters:
+    </div>
+  </div>
+ 
+  <!-- ARCHITECTURE TILES -->
+  <div class="arch-strip">
+    <div class="sec-label">The Four Paradigms</div>
+    <div class="arch-row">
+      <div class="arch-tile tile-t">
+        <div class="tile-year">2017</div>
+        <div class="tile-name">Transformer</div>
+        <div class="tile-complexity">O(n²)</div>
+        <div class="tile-desc">Global attention. Every token attends to every other. The reigning king of quality.</div>
+      </div>
+      <div class="arch-tile tile-s">
+        <div class="tile-year">2021–23</div>
+        <div class="tile-name">Classic SSM</div>
+        <div class="tile-complexity">O(n log n)</div>
+        <div class="tile-desc">Fixed A,B,C matrices. Efficient for audio &amp; genomics. Content-blind on language.</div>
+      </div>
+      <div class="arch-tile tile-m">
+        <div class="tile-year">2023–24</div>
+        <div class="tile-name">Mamba 1/2</div>
+        <div class="tile-complexity">O(n) ✦</div>
+        <div class="tile-desc">Selective, input-dependent gates. 4–5× faster inference. Training-first design.</div>
+      </div>
+      <div class="arch-tile tile-m3">
+        <div class="tile-year">Mar 2025</div>
+        <div class="tile-name">Mamba-3</div>
+        <div class="tile-complexity">O(n) + ℂ</div>
+        <div class="tile-desc">Inference-first. Complex states + MIMO. Beats Llama-3.2-1B on latency.</div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- STATS -->
+  <div class="stat-row">
+    <div class="stat-item">
+      <span class="stat-num" style="color:#e84040;">4×</span>
+      <div class="stat-desc">Transformer cost when context doubles</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" style="color:var(--accent);">5×</span>
+      <div class="stat-desc">Mamba inference speed vs Transformer</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" style="color:#7c3aed;">1.8pp</span>
+      <div class="stat-desc">Mamba-3 MIMO accuracy gain over Gated DeltaNet</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" style="color:#00a878;">½</span>
+      <div class="stat-desc">State size Mamba-3 needs vs Mamba-2</div>
+    </div>
+  </div>
+ 
+  <!-- KEY INSIGHTS -->
+  <div class="insights-block">
+    <div class="sec-label">5 Things Worth Understanding</div>
+    <div class="insight-list">
+      <div class="insight-item">
+        <div class="insight-icon">⚡</div>
+        <div class="insight-text">
+          <strong>The quadratic wall is real.</strong> <span class="hl-t">Transformers</span> deliver unmatched recall but pay an O(n²) tax that makes 100K+ token agentic workflows financially punishing. KV cache grows linearly in memory with every token.
+        </div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-icon">🎯</div>
+        <div class="insight-text">
+          <strong>Selectivity was the unlock.</strong> Classic <span class="hl-s">SSMs</span> (S4, H3) couldn't distinguish "bank" near "river" vs "bank" near "money" — fixed matrices treat all tokens identically. <span class="hl-m">Mamba-1</span> solved this by making B, C, and Δ input-dependent.
+        </div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-icon">🧠</div>
+        <div class="insight-text">
+          <strong>Real-valued states have a proven failure mode.</strong> Restricting SSM eigenvalues to real, non-negative values (Mamba-2's simplification) provably degrades state-tracking tasks. <span class="hl-m3">Mamba-3</span> restores complex-valued dynamics, fixing this mathematically.
+        </div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-icon">🚀</div>
+        <div class="insight-text">
+          <strong>MIMO is a free lunch.</strong> Mamba-3's Multi-Input Multi-Output formulation runs P parallel SSM channels per head — boosting accuracy by +1.2pp with <em>zero additional decode latency</em>, because decode is bottlenecked by state size, not projection count.
+        </div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-icon">🏭</div>
+        <div class="insight-text">
+          <strong>The shift is driven by deployment economics.</strong> RLVR post-training (for math/coding) and agentic systems like Claude Code generate massive rollouts. When inference demand explodes, inference-first architectures stop being academic curiosities.
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- MAMBA-3 SPOTLIGHT -->
+  <div class="m3-spotlight">
+    <div class="m3-label">★ Spotlight · ICLR 2026 · arXiv:2603.15569</div>
+    <div class="m3-title">MAMBA-3: THREE SURGICAL UPGRADES</div>
+    <div class="m3-pills">
+      <div class="m3-pill">
+        <div class="pill-num">01 / DISCRETIZATION</div>
+        <div class="pill-title">Exponential-Trapezoidal Recurrence</div>
+        <div class="pill-body">Replaces SSD with a more expressive formula. Matches Mamba-2 perplexity at half the state size. Eliminates the short causal convolution.</div>
+      </div>
+      <div class="m3-pill">
+        <div class="pill-num">02 / DYNAMICS</div>
+        <div class="pill-title">Complex-Valued State Space</div>
+        <div class="pill-body">State hₜ ∈ ℂᴺ. RoPE-style rotations encode complex transitions. Fixes provable state-tracking failures from real-only eigenvalues.</div>
+      </div>
+      <div class="m3-pill">
+        <div class="pill-num">03 / PARALLELISM</div>
+        <div class="pill-title">MIMO Projections</div>
+        <div class="pill-body">B ∈ ℝᴾˣᴴ, C ∈ ℝᴾˣᴴ. P parallel SSMs per head. +1.2pp accuracy at zero decode cost. Accuracy boost with no latency penalty.</div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- COMPARISON TABLE -->
+  <div class="compare-block">
+    <div class="sec-label">Quick Comparison</div>
+    <table class="mini-table">
+      <thead>
+        <tr>
+          <th class="th-label">Dimension</th>
+          <th class="th-t">Transformer</th>
+          <th class="th-m" style="color:var(--accent)">Mamba 1/2</th>
+          <th class="th-m3">Mamba-3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Compute</td>
+          <td class="bad">O(n²)</td>
+          <td class="good">O(n)</td>
+          <td class="good">O(n)</td>
+        </tr>
+        <tr>
+          <td>Inference Memory</td>
+          <td class="bad">O(n) KV</td>
+          <td class="good">O(1)</td>
+          <td class="good">O(1)</td>
+        </tr>
+        <tr>
+          <td>State Tracking</td>
+          <td class="good">Excellent</td>
+          <td class="bad">Weak</td>
+          <td class="good">Strong (ℂ)</td>
+        </tr>
+        <tr>
+          <td>In-Context Learning</td>
+          <td class="good">Excellent</td>
+          <td class="ok">Good</td>
+          <td class="ok">Better</td>
+        </tr>
+        <tr>
+          <td>Inference Latency</td>
+          <td class="bad">Expensive</td>
+          <td class="good">4–5× faster</td>
+          <td class="good">Fastest @1.5B</td>
+        </tr>
+        <tr>
+          <td>Design Priority</td>
+          <td class="ok">Quality</td>
+          <td class="ok">Training speed</td>
+          <td class="good">Inference-first</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  <!-- VERDICT -->
+  <div class="verdict-block">
+    <div class="verdict-corner"></div>
+    <div class="verdict-title">MY TAKE</div>
+    <div class="verdict-text">
+      Transformers won the quality race. Mamba proved linear architectures can match them. Mamba-3 asks the right next question: <strong>as inference costs dominate post-training and agentic compute, which architecture survives deployment economics?</strong><br><br>
+      We're not replacing Transformers tomorrow — the ecosystem moat is real. But the trajectory is clear. Hybrid architectures today, inference-first SSMs tomorrow. Mamba-3 is the first architecture that feels like a <strong>genuine long-term alternative</strong>, not just an academic curiosity.
+    </div>
+  </div>
+ 
+  <!-- HASHTAGS + FOOTER -->
+  <div class="post-footer">
+    <div class="hashtags">
+      #MachineLearning &nbsp;#LLM &nbsp;#GenAI &nbsp;#Mamba3 &nbsp;#Transformers
+      &nbsp;#StateSpaceModels &nbsp;#AIResearch &nbsp;#DeepLearning &nbsp;#MLEngineering
+    </div>
+    <div class="divider-line"></div>
+    <div class="bottom-row">
+      <div class="author-sig">
+        <div class="sig-avatar">SK</div>
+        <div>
+          <div class="sig-name">Shivam Kumar</div>
+          <div class="sig-title">AI Researcher, Gurgaon</div>
+        </div>
+      </div>
+      <div class="post-date">April 2026</div>
+    </div>
+  </div>
+ 
+  <!-- CTA -->
+  <div class="cta-strip">
+    <div class="cta-text">Found this useful? ♻️ Repost to your network — let's raise the bar on AI literacy.</div>
+    <div class="cta-action">Follow for more →</div>
+  </div>
+ 
+</div>
+ 
+</body>
+</html>
+ 
